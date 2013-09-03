@@ -45,6 +45,9 @@ class CompaniesController < ApplicationController
     @@email=@company['email'].to_s
     @@company=@company['company_name'].to_s
     @@address=@company['address'].to_s
+   @@date=@company['date'].to_s
+   @@time=@company['time'].to_s
+
      send_data generate_pdf(@company),
               filename: "generalforsamling.pdf",
               type: "application/pdf"
@@ -87,13 +90,13 @@ def generate_pdf(user)
           text "Innkalling til ordinær generalforsamling i "+@@company
           text "(jf. aksjeloven § 5-5 og 5-10)"
           move_down 15
-          text "Aksjeeierne i "+@@company+" innkalles til ordinær generalforsamling <DATE>"
-          text "Tidspunkt: <TIME>"
-          text "Møtested: <ADDRESS>"
+          text "Aksjeeierne i "+@@company+" innkalles til ordinær generalforsamling "+@@date
+          text "Tidspunkt:"+@@time
+          text "Møtested:"+@@address
           move_down 15
           text "Dagsorden:"
           move_down 15
-          text "1. Åpning av møte ved styreleder Ola Normann, og opptak av fortegnelse over møtende/deltakende aksjeeiere. "
+          text "1. Åpning av møte ved styreleder"+ @@myname+", og opptak av fortegnelse over møtende/deltakende aksjeeiere. "
           text "2. Valg av møteleder og protokollunderskrivere (minst en person i tillegg til møteleder)."
           text "3. Godkjennelse av innkalling og agenda."
           text "4. Godkjennelse av årsregnskapet og årsberetningen for xxxx, herunder konsernregnskap og utdeling av utbytte. "
