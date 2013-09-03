@@ -11,3 +11,92 @@
  *= require_self
  *= require_tree .
  */
+table {
+	border: 1px solid black;
+}
+
+td {
+	width:200px;
+ color: #666666;
+ font-size: 16pt;
+}
+
+a{
+ background: none repeat scroll 0 0 #2ECC71;
+    border: medium none;
+    border-bottom-right-radius: 0.125em;
+    border-top-right-radius: 0.125em;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    float: left;
+    font-size: 1.125em;
+    height: 3.125em;
+    margin: 0;
+    padding: 0;
+    width: 7.063em;
+    text-align: center;
+
+}
+
+ .new_company input[type="submit"] {
+    background: none repeat scroll 0 0 #2ECC71;
+    border: medium none;
+    border-bottom-right-radius: 0.125em;
+    border-top-right-radius: 0.125em;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    float: left;
+    font-size: 1.125em;
+    height: 3.125em;
+    margin: 0;
+    padding: 0;
+    width: 7.063em;
+}
+
+.edit_company input[type="submit"] {
+    background: none repeat scroll 0 0 #2ECC71;
+    border: medium none;
+    border-bottom-right-radius: 0.125em;
+    border-top-right-radius: 0.125em;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    color: #FFFFFF;
+    float: left;
+    font-size: 1.125em;
+    height: 3.125em;
+    margin: 0;
+    padding: 0;
+    width: 7.063em;
+}
+
+
+.new_company input[type="text"] {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none;
+    border-bottom-left-radius: 0.125em;
+    border-top-left-radius: 0.125em;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    color: #666666;
+    float: left;
+    font-size: 1.125em;
+    font-weight: 400;
+    height: 2.25em;
+    margin: 0;
+    padding: 0.438em 1.125em;
+    width: 14.188em;
+}
+
+.edit_company input[type="text"] {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none;
+    border-bottom-left-radius: 0.125em;
+    border-top-left-radius: 0.125em;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    color: #666666;
+    float: left;
+    font-size: 1.125em;
+    font-weight: 400;
+    height: 2.25em;
+    margin: 0;
+    padding: 0.438em 1.125em;
+    width: 14.188em;
+}
