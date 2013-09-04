@@ -29,6 +29,8 @@ GEM
     afm (0.2.0)
     arel (4.0.0)
     atomic (1.1.13)
+    bootstrap-sass (2.3.2.0)
+      sass (~> 3.2)
     builder (3.1.4)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -127,6 +129,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap-sass (= 2.3.2.0)
   coffee-rails (= 4.0.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 2.2.1)

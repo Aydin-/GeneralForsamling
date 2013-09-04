@@ -18,34 +18,58 @@
   <br>
   <br>
   <div class="field">
-    <%= f.label :company_name %><br>
+    <%= f.label :company_name %>
     <%= f.text_field :company_name %>
   </div>
   <br>
   <br>
   <div class="field">
-    <%= f.label :contact_name %><br>
+    <br>
+    <%= f.label :contact_name %>
     <%= f.text_field :contact_name %>
   </div>
   <br>
   <br>
   <div class="field">
-    <%= f.label :date %><br>
+    <br>
+    <%= f.label :date %>
     <%= f.date_select :date %>
   </div>
   <br>
-  <br>
   <div class="field">
-    <%= f.label :time %><br>
+    <%= f.label :time %>
     <%= f.text_field :time %>
   </div>
   <br>
   <br>
   <div class="field">
-    <%= f.label :address %><br>
+    <br>
+    <%= f.label :address %>
     <%= f.text_field :address %>
   </div>
-  <br>
+   <br>
+   <br>
+  <div class="field">
+    <br>
+    <%= "Details"%><br>
+ 
+<%= text_area_tag "comment", 
+"1. Åpning av møte ved styreleder Ola Normann, og opptak av fortegnelse over møtende/deltakende aksjeeiere. 
+
+2. Valg av møteleder og protokollunderskrivere (minst en person i tillegg til møteleder).
+
+3. Godkjennelse av innkalling og agenda.
+
+4. Godkjennelse av årsregnskapet og årsberetningen for 2012, herunder konsernregnskap og utdeling av utbytte. 
+
+5. Fastsetting av godtgjørelse til styrets medlemmer.
+
+6. Godkjennelse av godtgjørelse til revisor. (Dersom revisor er valgt)
+
+7. Styrevalg.
+(Merk: Endring av styre skal behandles av generalforsamlingen. Aksjeloven stiller imidlertid ikke krav til årlig behandling av dette punktet. Valg av styre kan også gjøres av ekstraordinær generalforsamling.)", :class => 'details_area' %>
+  </div>
+
   <br>
   <div class="actions">
     <%= f.submit %>

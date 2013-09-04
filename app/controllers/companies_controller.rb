@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
+    @company = Company.new
     @companies = Company.all
   end
 
@@ -17,6 +18,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
+    
   end
 
   # GET /companies/1/edit
@@ -30,8 +32,8 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @company }
+        format.html { redirect_to edit_company_path(@company), notice: 'Company was successfully created.' }
+      #  format.json { render action: 'show', status: :created, location: @company }
       else
         format.html { render action: 'new' }
         format.json { render json: @company.errors, status: :unprocessable_entity }
@@ -45,8 +47,8 @@ class CompaniesController < ApplicationController
     @@email=@company['email'].to_s
     @@company=@company['company_name'].to_s
     @@address=@company['address'].to_s
-   @@date=@company['date'].to_s
-   @@time=@company['time'].to_s
+    @@date=@company['date'].to_s
+    @@time=@company['time'].to_s
 
      send_data generate_pdf(@company),
               filename: "generalforsamling.pdf",
@@ -81,7 +83,7 @@ def generate_pdf(user)
         text "(2)Det kan fastsettes i vedtektene at aksjeeierne skal kunne avgi sin stemme skriftlig, herunder ved bruk av elektronisk kommunikasjon, i en periode før generalforsamlingen. For slik stemmegiving skal det benyttes en betryggende metode for å autentisere avsenderen. Vedtektene kan fastsette nærmere krav til slik stemmegiving"
 
       end
-      move_down 20
+     
       stroke_horizontal_rule
            move_down 15
 
@@ -96,13 +98,15 @@ def generate_pdf(user)
           move_down 15
           text "Dagsorden:"
           move_down 15
-          text "1. Åpning av møte ved styreleder"+ @@myname+", og opptak av fortegnelse over møtende/deltakende aksjeeiere. "
-          text "2. Valg av møteleder og protokollunderskrivere (minst en person i tillegg til møteleder)."
-          text "3. Godkjennelse av innkalling og agenda."
-          text "4. Godkjennelse av årsregnskapet og årsberetningen for xxxx, herunder konsernregnskap og utdeling av utbytte. "
-          text "5. Fastsetting av godtgjørelse til styrets medlemmer."
-          text "6. Godkjennelse av godtgjørelse til revisor. (Dersom revisor er valgt)"
-          text "7. Styrevalg.(Merk: Endring av styre skal behandles av generalforsamlingen. Aksjeloven stiller imidlertid ikke krav til årlig behandling av dette punktet. Valg av styre kan også gjøres av ekstraordinær generalforsamling.)"
+          
+          text @@comment
+         # text "1. Åpning av møte ved styreleder"+ @@myname+", og opptak av fortegnelse over møtende/deltakende aksjeeiere. "
+         # text "2. Valg av møteleder og protokollunderskrivere (minst en person i tillegg til møteleder)."
+         # text "3. Godkjennelse av innkalling og agenda."
+         #text "4. Godkjennelse av årsregnskapet og årsberetningen for xxxx, herunder konsernregnskap og utdeling av utbytte. "
+         #text "5. Fastsetting av godtgjørelse til styrets medlemmer."
+         #text "6. Godkjennelse av godtgjørelse til revisor. (Dersom revisor er valgt)"
+         #text "7. Styrevalg.(Merk: Endring av styre skal behandles av generalforsamlingen. Aksjeloven stiller imidlertid ikke krav til årlig behandling av dette punktet. Valg av styre kan også gjøres av ekstraordinær generalforsamling.)"
 
           move_down 15
           text "Aksjeeiere kan la seg representere ved fullmektig. Fullmektigen må fremlegge skriftlig fullmakt."
@@ -134,6 +138,10 @@ text "for styret i "+@@company
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { head :no_content }
+        params.each do |key,value|
+  Rails.logger.warn "Param #{key}: #{value}"
+end
+ @@comment=params[:comment]
       else
         format.html { render action: 'edit' }
         format.json { render json: @company.errors, status: :unprocessable_entity }
@@ -154,11 +162,13 @@ text "for styret i "+@@company
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
+
       @company = Company.find(params[:id])
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:email, :company_name, :contact_name, :date, :time, :address)
+      params.require(:company).permit(:email, :company_name, :contact_name, :date, :time, :address, :details)
     end
 end
