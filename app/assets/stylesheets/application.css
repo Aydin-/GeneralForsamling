@@ -45,7 +45,7 @@ a{
 .main_container {
 
 	width: 800px;
-	height: 800px;
+	height: 880px;
 	border-radius: 18px 18px 18px 18px !important;
 
     text-align: left;
@@ -70,11 +70,11 @@ a{
     margin-right: auto;
     margin-top: 100px;
     margin-bottom: auto;
-  	background-image: linear-gradient(rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 95%);
+  	background-color: rgba(0, 60, 60, 0.15) !important;
     border-color: #ccc !important;
     
     border-style: groove !important;
-    border-width: 1px !important;
+    border-width: 2px !important;
 
     color: white !important;
    

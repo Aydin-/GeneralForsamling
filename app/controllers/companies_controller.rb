@@ -86,7 +86,7 @@ def generate_pdf(user)
      
       stroke_horizontal_rule
            move_down 15
-
+ font_size(11) do
           text "Til aksjeeiere i: "+@@company
           move_down 15
           text "Innkalling til ordinær generalforsamling i "+@@company
@@ -107,26 +107,25 @@ def generate_pdf(user)
          #text "5. Fastsetting av godtgjørelse til styrets medlemmer."
          #text "6. Godkjennelse av godtgjørelse til revisor. (Dersom revisor er valgt)"
          #text "7. Styrevalg.(Merk: Endring av styre skal behandles av generalforsamlingen. Aksjeloven stiller imidlertid ikke krav til årlig behandling av dette punktet. Valg av styre kan også gjøres av ekstraordinær generalforsamling.)"
-
+      end
           move_down 15
           text "Aksjeeiere kan la seg representere ved fullmektig. Fullmektigen må fremlegge skriftlig fullmakt."
-           move_down 30
-text "Med vennlig hilsen"
-text "for styret i "+@@company
+           move_down 25
+          text "Med vennlig hilsen"
+          text "for styret i "+@@company
           text @@myname  
           text @@email  
           text @@address
 
           time1 = Time.new
-           move_down 30
+           move_down 10
            stroke_horizontal_rule
-            move_down 15
-          text "Generated on: "+time1.inspect
-           move_down 15
+            move_down 5
+            font_size(11) do
+             text "Generated on: "+time1.inspect
+        end
+           move_down 5
           stroke_horizontal_rule
-          move_down 30
-          stroke_circle [0, 0], 10
-
     end.render
   end
 
