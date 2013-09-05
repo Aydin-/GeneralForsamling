@@ -33,6 +33,7 @@ class CompaniesController < ApplicationController
     respond_to do |format|
       if @company.save
         format.html { redirect_to edit_company_path(@company), notice: 'Company was successfully created.' }
+        CompanyMailer.welcome_email(@company)
       #  format.json { render action: 'show', status: :created, location: @company }
       else
         format.html { render action: 'new' }
@@ -100,14 +101,7 @@ def generate_pdf(user)
           move_down 15
           
           text @@comment
-         # text "1. Åpning av møte ved styreleder"+ @@myname+", og opptak av fortegnelse over møtende/deltakende aksjeeiere. "
-         # text "2. Valg av møteleder og protokollunderskrivere (minst en person i tillegg til møteleder)."
-         # text "3. Godkjennelse av innkalling og agenda."
-         #text "4. Godkjennelse av årsregnskapet og årsberetningen for xxxx, herunder konsernregnskap og utdeling av utbytte. "
-         #text "5. Fastsetting av godtgjørelse til styrets medlemmer."
-         #text "6. Godkjennelse av godtgjørelse til revisor. (Dersom revisor er valgt)"
-         #text "7. Styrevalg.(Merk: Endring av styre skal behandles av generalforsamlingen. Aksjeloven stiller imidlertid ikke krav til årlig behandling av dette punktet. Valg av styre kan også gjøres av ekstraordinær generalforsamling.)"
-      end
+        end
           move_down 15
           text "Aksjeeiere kan la seg representere ved fullmektig. Fullmektigen må fremlegge skriftlig fullmakt."
            move_down 25
