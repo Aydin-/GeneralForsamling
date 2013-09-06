@@ -1,25 +1,26 @@
 
 <div class="main_container">
   <h1>General Forsamling</h1>
-<div class="sub_container">
-  <br>
-
-   <%= form_for(@company) do |f| %>
-     <div class="field">
-        <%= f.label :email %><br>
-
-        <%= f.text_field :email %>
-    </div>
-    <br>
-    <div class="actions">
-        <%= f.submit %>
-      </div>
+    <div class="sub_container">
       <br>
-    <% end %>
-</div>
+
+       <%= form_for(@company) do |f| %>
+             <div class="field">
+                <%= f.label :email %><br>
+
+                <%= f.text_field :email %>
+            </div>
+        <br>
+            <div class="actions">
+                <%= f.submit %>
+              </div>
+          <br>
+        <% end %>
+    </div>
 <br>
 <br>
 
+</div>
 </div>
 
 <h1>Listing companies</h1>
