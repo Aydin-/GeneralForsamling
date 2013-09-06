@@ -19,5 +19,20 @@ module GeneralForsamling
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    def dev?
+    @is_dev||=(ENV['RAILS_ENV']=='development')
+    end
+    def tx_(key)
+        a,b = key.split('/')
+        retval = APP_TEXT[a][b]
+        if retval == nil
+        return "Ooops, no message file"
+        else
+        return retval + (dev? ? 'Â°' : '')
+        end
+    end
+  
   end
+
+
 end

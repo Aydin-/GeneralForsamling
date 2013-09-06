@@ -8,6 +8,7 @@ class CompaniesController < ApplicationController
   def index
     @company = Company.new
     @companies = Company.all
+    @@comment = ""
   end
 
   # GET /companies/1
@@ -134,7 +135,7 @@ def generate_pdf(user)
         params.each do |key,value|
   Rails.logger.warn "Param #{key}: #{value}"
 end
- @@comment=params[:comment]
+       @@comment=params[:comment]
       else
         format.html { render action: 'edit' }
         format.json { render json: @company.errors, status: :unprocessable_entity }
