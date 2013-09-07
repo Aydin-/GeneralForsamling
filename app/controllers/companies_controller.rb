@@ -2,7 +2,6 @@ require "prawn"
 
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy, :pdf]
-
   # GET /companies
   # GET /companies.json
   def index
@@ -19,7 +18,7 @@ class CompaniesController < ApplicationController
   # GET /companies/new
   def new
     @company = Company.new
-    
+    @company.time=Time.now
   end
 
   # GET /companies/1/edit
@@ -43,7 +42,35 @@ class CompaniesController < ApplicationController
     end
   end
 
-  def pdf
+  # PATCH/PUT /companies/1
+  # PATCH/PUT /companies/1.json
+  def update
+    respond_to do |format|
+      if @company.update(company_params)
+        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+        format.json { head :no_content }
+        params.each do |key,value|
+  Rails.logger.warn "Param #{key}: #{value}"
+end
+       @@comment=params[:comment]
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @company.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /companies/1
+  # DELETE /companies/1.json
+  def destroy
+    @company.destroy
+    respond_to do |format|
+      format.html { redirect_to companies_url }
+      format.json { head :no_content }
+    end
+  end
+
+     def pdf
 
     @@myname=@company['contact_name'].to_s
     @@email=@company['email'].to_s
@@ -124,41 +151,10 @@ def generate_pdf(user)
     end.render
   end
 
-
-  # PATCH/PUT /companies/1
-  # PATCH/PUT /companies/1.json
-  def update
-    respond_to do |format|
-      if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
-        format.json { head :no_content }
-        params.each do |key,value|
-  Rails.logger.warn "Param #{key}: #{value}"
-end
-       @@comment=params[:comment]
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /companies/1
-  # DELETE /companies/1.json
-  def destroy
-    @company.destroy
-    respond_to do |format|
-      format.html { redirect_to companies_url }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
-
       @company = Company.find(params[:id])
-
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -166,3 +162,4 @@ end
       params.require(:company).permit(:email, :company_name, :contact_name, :date, :time, :address, :details)
     end
 end
+
