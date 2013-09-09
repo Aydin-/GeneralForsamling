@@ -4,7 +4,7 @@
     <div class="sub_container">
       <br>
 
-       <%= form_for(@company) do |f| %>
+       <%= form_for(@company, :html => { :onsubmit => "return validate_user_fields( this );" }) do |f| %>
              <div class="field">
                 <%= f.label :email %><br>
 
@@ -19,11 +19,25 @@
     </div>
 <br>
 <br>
-
 </div>
 </div>
 
-<h1>Listing companies</h1>
+<div id="errormessage" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalLabel">General Forsamling</h3>
+  </div>
+  <div class="modal-body">
+      <div class="alert alert-info">
+      Please enter e-mail address.
+      </div>
+  </div>
+  <div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+  </div>
+</div>
+
+<!--h1>Listing companies</h1>
 
 <table>
   <thead>
@@ -56,8 +70,9 @@
       </tr>
     <% end %>
   </tbody>
-</table>
-
-<br>
+  <br>
 
 <%= link_to 'New Company', new_company_path %>
+</table-->
+
+

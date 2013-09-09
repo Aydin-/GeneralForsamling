@@ -49,9 +49,11 @@ class CompaniesController < ApplicationController
       if @company.update(company_params)
         format.html { redirect_to @company, notice: 'Company was successfully updated.' }
         format.json { head :no_content }
+      
         params.each do |key,value|
-  Rails.logger.warn "Param #{key}: #{value}"
-end
+         Rails.logger.warn "Param #{key}: #{value}"
+        end
+
        @@comment=params[:comment]
       else
         format.html { render action: 'edit' }
@@ -70,7 +72,7 @@ end
     end
   end
 
-     def pdf
+  def pdf
 
     @@myname=@company['contact_name'].to_s
     @@email=@company['email'].to_s
@@ -98,7 +100,7 @@ def generate_pdf(user)
       stroke_horizontal_rule
       move_down 5
       font_size(8) do
-        text "Innledning – utdrag av aksjeloven:", :color => "FF0000"  
+        text "Innledning – utdrag av aksjeloven:", :color => "808080"  
         text "§ 5-10. Krav til innkallingen " 
         text "(1) Generalforsamlingen innkalles ved skriftlig henvendelse til alle aksjeeiere med kjent adresse. Innkallingen skal angi tid og sted for møtet. "
         text "(2) Innkalling til generalforsamlingen skal være sendt senest en uke før møtet skal holdes, om ikke vedtektene setter en lengre frist. En slik vedtektsbestemmelse gjelder ikke ved innkalling som foretas på bakgrunn av krav etter § 5-6 annet ledd. "
